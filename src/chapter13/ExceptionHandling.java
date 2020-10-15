@@ -12,7 +12,22 @@ public class ExceptionHandling {
     public static void main(String []args){
 
 //        createNewFile();
-        numbersExceptionHandling();
+//        numbersExceptionHandling();
+//        try {
+//            createNewFileRethrow();
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
+
+//        calculateSalary(41, 16);
+
+        try {
+            int c = 30/0;
+        } catch (ArithmeticException e){
+            System.out.println("Dividing by zero is not allowed");
+        } finally {
+            System.out.println("Division is fun");
+        }
     }
 
     public static void createNewFile(){
@@ -23,6 +38,11 @@ public class ExceptionHandling {
           System.out.println("Directory does not exist.");
           e.printStackTrace();
         }
+    }
+
+    public static void createNewFileRethrow() throws IOException{
+        File file = new File("resources/nonexistent.txt");
+        file.createNewFile();
     }
 
     public static void numbersExceptionHandling(){
@@ -40,5 +60,13 @@ public class ExceptionHandling {
         } finally {
                fileReader.close();
         }
+    }
+
+    public static void calculateSalary(double hours, double rate){
+        if (hours > 40){
+            throw new IllegalArgumentException("We do not allow overtime.");
+        }
+
+        System.out.println(hours * rate);
     }
 }
